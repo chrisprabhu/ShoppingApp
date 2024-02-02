@@ -1,23 +1,35 @@
-users = [{
-        'name': 'chris',
-        'type': 'admin'
-    },
-    {
-        'name': 'sarah',
-        'type': 'customer'
-    }]
+users = {
+        'chris': {
+            'type': 'admin',
+            'password': 'chris'
+        },       
+        'sarah' : {        
+            'type': 'customer',
+            'password': 'sarah'
+        }
+        }
 
 user_name = input('Please enter username: ')
 user_type = ''
 
 for user in users:
-    if user['name'] == user_name:
-        user_type = user['type']
+    if user_name in users:
+        user_type = users[user_name]['type']
         print('found user: ' + user_name + ' of type: ' + user_type)
-        break
+        user_password = input('Enter password:')
+        
+        if users[user_name]['password'] == user_password:
+            print('Welcome!')
+            break
+        else:
+            print('Incorrect Password. Exiting.')
+            exit()
 
 if not user_type:
     print('user not found')
     exit()
+    
+    
+
 
 
